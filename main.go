@@ -5,7 +5,7 @@ import (
 )
 
 type Person struct {
-	Name string `json:"name"` // Affects YAML field names too.
+	Name string `json:"name"`
 	Age  int    `json:"age"`
 }
 
