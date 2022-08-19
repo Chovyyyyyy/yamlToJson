@@ -19,8 +19,6 @@ func indirect(v reflect.Value, decodingNull bool) (json.Unmarshaler, encoding.Te
 		v = v.Addr()
 	}
 	for {
-		// Load value from interface, but only if the result will be
-		// usefully addressable.
 		if v.Kind() == reflect.Interface && !v.IsNil() {
 			e := v.Elem()
 			if e.Kind() == reflect.Ptr && !e.IsNil() && (!decodingNull || e.Elem().Kind() == reflect.Ptr) {
@@ -58,8 +56,8 @@ func indirect(v reflect.Value, decodingNull bool) (json.Unmarshaler, encoding.Te
 
 type field struct {
 	name      string
-	nameBytes []byte                 // []byte(name)
-	equalFold func(s, t []byte) bool // bytes.EqualFold or equivalent
+	nameBytes []byte                 
+	equalFold func(s, t []byte) bool 
 
 	tag       bool
 	index     []int
